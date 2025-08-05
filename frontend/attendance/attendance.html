@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Attendance Sheet</title>
+  <link rel="stylesheet" href="attendance.css" />
+</head>
+<body>
+  <header>
+    <div class="course-details">
+      <h1 id="subjectName">Loading...</h1>
+      <div class="info">
+        <p id="className"><strong>Class:</strong> Loading...</p>
+        <p id="totalStudents"><strong>Total Students:</strong> Loading</p>
+      </div>
+      <div class="date-info">
+        <p id="selectedDate">Date: Loading...</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="attendance-container">
+    <div class="students-list-container">
+      <div id="studentsList" class="students-list">
+        <div class="header">
+          <div>Roll No.</div>
+          <div>Name</div>
+          <div>Status</div>
+        </div>
+        <!-- Student rows inserted here -->
+      </div>
+      <div class="submit-container">
+        <button id="submit-btn">Submit Attendance</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="attendance.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacher Panel</title>
+  <link rel="stylesheet" href="./teacher.css">
+</head>
+<body>
+
+  <header>
+    <div class="profile">
+      <img id="userImage" alt="Profile Picture">
+      <div>
+        <div id="userName"></div>
+        <div id="userId"></div>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </header>
+
+  <div class="container">
+    <h3>
+      📅 Today: <span id="todayDate"></span> &nbsp;&nbsp;|&nbsp;&nbsp; 🕒 Time: <span id="currentTime"></span>
+    </h3>
+
+    <div class="summary">
+      <div class="card">
+        <strong>Total Classes:</strong>
+        <p id="totalClasses">4</p>
+      </div>
+      <div class="card">
+        <strong>Classes Taken Today:</strong>
+        <p id="classesTaken">2</p>
+      </div>
+      <div class="card">
+        <strong>Total Students:</strong>
+        <p id="totalStudents">120</p>
+      </div>
+      <div class="card">
+        <strong>Next Class:</strong>
+        <p id="nextClass">11:30 AM – Physics (Grade 9)</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button onclick="toggleAttendanceForm()">📝 Take Attendance</button>
+      <button>📋 View Records</button>
+      <button>📊 Generate Report</button>
+      <button>🔍 Search Student</button>
+    </div>
+
+  
+    <div class="attendance-form" id="attendanceForm">
+      <label for="classSelect">Select Class:</label>
+      <select id="classSelect">
+        <option disabled selected>--Choose--</option>
+        <option value="9">Class 9</option>
+        <option value="10">Class 10</option>
+      </select>
+
+      <label for="attendanceDate">Select Date:</label>
+      <input type="date" id="attendanceDate" />
+
+      <button onclick="goToAttendancePage()">Proceed ➡️</button>
+    </div>
+  </div>
+
+  <script src="./teacher.js"></script>
+</body>
+</html>

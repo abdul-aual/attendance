@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign In</title>
+  <link rel="stylesheet" href="style.css" />
+<!-- Font Awesome CDN -->
+<script src="https://kit.fontawesome.com/8ec20b6552.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div class="wrapper">
+    <div class="login-box">
+      <h1>Sign in </h1>
+
+      <!-- error msg -->
+      <div id="user-login-error" class="error hidden">
+        Incorrect ID or password.
+        <button id="error-close-btn" class="error-close" type="button">&times;</button>
+    </div>
+      
+      
+
+      <form id="loginForm">
+        <input type="text" id="user-id" placeholder="User Id" autocomplete="username"  required />
+        <div class="password-div">
+          <input type="password" id="password" placeholder="Password" autocomplete="current-password" required />
+        <button type="button" class="toggle-password" id="togglePassword">
+          <i class="fa-solid fa-eye" id="eyeIcon"></i>
+        </button>
+        </div>
+        <button class="sign-in-btn" onclick="handleLogin(event)" >Sign In</button>
+      </form>
+    </div>
+    <div class="footer">
+      <p>New to our site? <a href="#">Create an account</a></p>
+    </div>
+  </div>
+
+  <script src="./js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  color: #333;
+}
+
+header {
+  background: linear-gradient(135deg, #6b8ce3, #4a6ef2);
+  color: white;
+  padding: 30px 20px 50px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(74, 110, 242, 0.3);
+  max-width: 600px;
+  margin: 20px auto 0;
+}
+
+.course-details h1 {
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.course-details .info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.date-info {
+  margin: 15px auto 0;
+  max-width: 300px;
+}
+
+.course-details .info p,
+.date-info p {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+#className {
+  padding: 5px 30px;
+}
+
+.attendance-container {
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+.students-list-container {
+  padding: 0;
+  margin: 0;
+}
+
+.students-list {
+  width: 600px;
+  margin: 0 auto;
+  border: 1px solid #444;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.child {
+  display: flex;
+  font-size: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.child:last-child {
+  border-bottom: none;
+}
+
+.child > div {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.child div:last-child {
+  border-right: none;
+}
+
+.students-list .child:nth-child(even) {
+  background-color: #d3d3d3;
+}
+
+.students-list .child:nth-child(odd) {
+  background-color: white;
+}
+
+.header {
+  background-color: #4a6ef2;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+}
+
+.header div {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.header div:last-child {
+  border-right: none;
+}
+
+.status-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ✅ Updated button class selectors */
+.present-btn,
+.absent-btn {
+  padding: 8px 14px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  cursor: pointer;
+  color: black;
+  background-color: inherit; /* Background set dynamically by JS */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ✅ Submit Button */
+#submit-btn {
+  margin: 5px 0 60px;
+  max-width: 600px;
+  min-width: 600px;
+  padding: 12px 24px;
+  background-color: #4a6ef2;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#submit-btn:hover {
+  background-color: #3a59c7;
+}
+
+/* ✅ Edit Button */
+#edit-btn , #panel-bt{
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#edit-btn:hover {
+  background-color: #e68900;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 480px) {
+  .course-details .info {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .students-list {
+    width: 100%;
+  }
+
+  #submit-btn {
+    width: 100%;
+    min-width: unset;
+  }
+}

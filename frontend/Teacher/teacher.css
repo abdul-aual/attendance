@@ -1,0 +1,131 @@
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+  }
+
+  header {
+    background: #004080;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+
+  .profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+  .logout-btn {
+    background: #ff4d4d;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .summary {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    flex: 1 1 200px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .actions button {
+    flex: 1 1 200px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .actions button:hover {
+    background-color: #0066cc;
+  }
+
+  .attendance-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    animation: slideDown 0.4s ease-in-out;
+  }
+
+  .attendance-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .attendance-form select,
+  .attendance-form input[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .attendance-form button {
+    margin-top: 10px;
+    background-color: #004080;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .attendance-form button:hover {
+    background-color: #0066cc;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
