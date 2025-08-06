@@ -10,7 +10,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'postbook2'  // your DB name
+    database: 'postbook2'  
 });
 
 db.connect(err => {
@@ -27,7 +27,7 @@ app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
 
-// User login info route
+
 app.post('/getUserInfo', (req,res)=>{
     const {inputId, inputPassword} = req.body;
     const getUserInfosql = `SELECT userId,userName,userImage FROM users WHERE userId=? AND userPassword=?`;
@@ -40,7 +40,7 @@ app.post('/getUserInfo', (req,res)=>{
     });
 });
 
-// Get students and subjects for a class & teacher
+
 app.post('/studentsList', (req, res) => {
     const { class: selectedClass, userId } = req.body;
 
@@ -70,7 +70,7 @@ app.post('/studentsList', (req, res) => {
 
 // ---- NINE PHY ATTENDANCE ROUTES ----
 
-// Insert attendance for ninephy
+
 app.post('/submitAttendanceNinePhy', (req, res) => {
     const { attendanceData } = req.body;
 
@@ -147,7 +147,6 @@ app.post('/updateAttendanceNinePhy', (req, res) => {
 
 // ---- TEN PHY ATTENDANCE ROUTES ----
 
-// Insert attendance for tenphy
 app.post('/submitAttendanceTenPhy', (req, res) => {
     const { attendanceData } = req.body;
 
@@ -223,7 +222,6 @@ app.post('/updateAttendanceTenPhy', (req, res) => {
 
 
 
-//new added
 
 // Route to get monthly attendance report
 app.post('/getMonthlyReport', (req, res) => {
