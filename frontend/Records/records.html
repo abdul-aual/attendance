@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Attendance Records</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #ddd;
+    }
+    .tick {
+      color: green;
+      font-weight: bold;
+    }
+    .cross {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Monthly Attendance Report</h2>
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div>
+      Class: <span id="className"></span> |
+      Month: <span id="monthName"></span>
+    </div>
+
+    <table id="attendanceTable">
+      <thead>
+        <tr id="headerRow">
+          <th>Roll</th>
+          <th>Student Name</th>
+          <!-- Dates will be inserted here -->
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Student rows go here -->
+      </tbody>
+    </table>
+    <p id="noDataMsg" style="text-align:center; color:red; display:none;">No attendance records found for this month.</p>
+  </div>
+
+  <script>
+    const selectedClass = localStorage.getItem('selectedSrchClass');  // '9' or '10'
+    const selectedMonth = localStorage.getItem('selectedSrchMonth'); // '1' to '12'
+
+    const classConvert = { '9': 'Nine', '10': 'Ten' };
+    document.getElementById('className').textContent = classConvert[selectedClass] || selectedClass;
+    document.getElementById('monthName').textContent = new Date(2025, selectedMonth - 1).toLocaleString('default', { month: 'long' });
+
+    async function fetchMonthlyReport() {
+      try {
+        const response = await fetch('http://localhost:5000/getMonthlyReport', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            selectedClass,
+            selectedMonth
+          })
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+          throw new Error(data.message || 'Failed to fetch data');
+        }
+
+        if (!data.data.dates.length || !data.data.students.length) {
+          document.getElementById('noDataMsg').style.display = 'block';
+          document.getElementById('attendanceTable').style.display = 'none';
+          return;
+        }
+
+        buildTable(data.data.dates, data.data.students);
+      } catch (error) {
+        console.error('Error fetching monthly report:', error);
+        alert('Error fetching monthly attendance data.');
+      }
+    }
+
+    function buildTable(dates, students) {
+      const headerRow = document.getElementById('headerRow');
+      const tbody = document.getElementById('tableBody');
+
+      while (headerRow.children.length > 2) {
+        headerRow.removeChild(headerRow.lastChild);
+      }
+      tbody.innerHTML = '';
+
+      dates.forEach(dateStr => {
+        const dateObj = new Date(dateStr);
+        const day = dateObj.getDate();
+        const month = dateObj.getMonth() + 1;
+        const th = document.createElement('th');
+        th.textContent = `${day}/${month}`;
+        headerRow.appendChild(th);
+      });
+
+      students.forEach(student => {
+        const tr = document.createElement('tr');
+
+        const rollTd = document.createElement('td');
+        rollTd.textContent = student.roll;
+        tr.appendChild(rollTd);
+
+        const nameTd = document.createElement('td');
+        nameTd.textContent = student.student_name;
+        tr.appendChild(nameTd);
+
+        dates.forEach(dateKey => {
+          const statusRaw = student.statusByDate[dateKey];
+          const status = statusRaw ? statusRaw.toLowerCase() : null;
+
+          if (status === 'present') {
+            tr.innerHTML += `<td class="tick">&#10004;</td>`;
+          } else if (status === 'absent') {
+            tr.innerHTML += `<td class="cross">&#10008;</td>`;
+          } else {
+            tr.innerHTML += `<td>-</td>`;
+          }
+        });
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    fetchMonthlyReport();
+  </script>
+</body>
+</html>

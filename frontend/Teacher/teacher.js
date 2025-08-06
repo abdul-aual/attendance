@@ -98,3 +98,17 @@
       window.location.href = `/frontend/attendance/attendance.html`;
     }
 
+    function goToReportPage(){
+      const selectedSrchClass = document.getElementById('srchClass').value;
+      const selectedSrchMonth = document.getElementById('srchMonth').value;
+      if(!selectedSrchClass || !selectedSrchMonth){
+        alert("Please select both class and Month");
+        return;
+      }
+
+      localStorage.setItem('selectedSrchClass', selectedSrchClass);
+      localStorage.setItem('selectedSrchMonth', selectedSrchMonth);
+
+      window.location.href='../Records/records.html';
+    }
+
