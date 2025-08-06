@@ -305,3 +305,27 @@ app.post('/getMonthlyReport', (req, res) => {
     });
   });
   
+
+  //new backend after creating 
+
+  app.post('/create-user', (req, res) => {
+    const { userName, userPassword, userImage } = req.body;
+  
+    if (!userName || !userPassword) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+  
+    const sql = `INSERT INTO users(userName, userPassword, userImage) VALUES (?, ?, ?)`;
+  
+    db.query(sql, [userName, userPassword, userImage || null], (err, result) => {
+      if (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ error: 'Database error' });
+      }
+  
+      const newUserId = result.insertId;
+      res.status(201).json({ message: 'User created', userId: newUserId });
+    });
+  });
+  
+  

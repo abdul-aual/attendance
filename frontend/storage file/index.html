@@ -12,6 +12,7 @@
     <!-- Login Box -->
     <div class="login-box" id="login-box">
       <h1>Sign in</h1>
+
       <div id="user-login-error" class="error hidden">
         Incorrect ID or password.
         <button id="error-close-btn" class="error-close" type="button">&times;</button>
@@ -29,19 +30,20 @@
       </form>
     </div>
 
-    <!-- Create Account Box -->
+    <!-- Create Account Box (hidden by default) -->
     <div class="login-box hidden" id="create-box">
       <h1>Create Account</h1>
+
       <form id="createForm">
-        <input type="text" id="user-name" placeholder="Your Name" required />
         <input type="text" id="secret-key" placeholder="Secret Key" required />
         <input type="password" id="create-password" placeholder="Password" required />
         <input type="password" id="confirm-password" placeholder="Confirm Password" required />
         <input type="url" id="image-url" placeholder="Image URL" />
-        <button class="sign-in-btn" id="createBtn">Create</button>
+        <button class="sign-in-btn" onclick="handleCreate(event)">Create</button>
       </form>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
       <p>
         HSTU new teacher?
