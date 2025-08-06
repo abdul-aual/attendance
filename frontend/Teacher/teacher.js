@@ -49,6 +49,29 @@
       
     }
 
+    // view records;
+
+    function toggleRecords(){
+      const user =  LoggedUser[0];
+      if(user.userId===1002){
+
+        const records = document.getElementById('viewRecords');
+        const isVisible = records.style.display ==='flex';
+
+      if (isVisible) {
+        records.style.display = 'none';
+      } else {
+        records.style.display = 'flex';
+
+      
+        setTimeout(() => {
+          records.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+      }
+    }
+
+
     const selectedElement = document.getElementById('classSelect');
     const attendanceDateInput = document.getElementById('attendanceDate');
 
