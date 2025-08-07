@@ -3,13 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginBox = document.getElementById('login-box');
   const createBox = document.getElementById('create-box');
   const createForm = document.getElementById('createForm');
+  const footerTextContainer = toggleLink.parentElement;
 
-  toggleLink.addEventListener('click', (e) => {
+  function updateFooterText() {
+    if (loginBox.classList.contains('hidden')) {
+      footerTextContainer.innerHTML = `Already have an account? <a href="#" id="create-account-toggle">Log in</a>`;
+    } else {
+      footerTextContainer.innerHTML = `Don’t have an account? <a href="#" id="create-account-toggle">Create an account</a>`;
+    }
+
+    document.getElementById('create-account-toggle').addEventListener('click', toggleForms);
+  }
+
+  function toggleForms(e) {
     e.preventDefault();
     loginBox.classList.toggle('hidden');
     createBox.classList.toggle('hidden');
-  });
+    updateFooterText();
+  }
 
+  toggleLink.addEventListener('click', toggleForms);
   createForm.addEventListener('submit', handleCreate);
 });
 

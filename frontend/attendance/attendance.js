@@ -1,7 +1,7 @@
 const userString = localStorage.getItem('LoggedInUser');
 if (!userString) {
   alert("You must log in first.");
-  window.location.href = '../index.html'; // redirect to login page
+  window.location.href = '../index.html'; 
   throw new Error("Unauthorized - No user logged in");
 }
 
@@ -10,10 +10,10 @@ const userId = userData[0]?.userId;
 
 if (userId !== 1002) {
   alert("You are not authorized to access this page.");
-  window.location.href = '../index.html'; // redirect unauthorized users
+  window.location.href = '../index.html'; 
   throw new Error("Unauthorized access");
 }
-// --- End access control ---
+
 
 
 const callClass = localStorage.getItem('selectedClass');
@@ -27,7 +27,7 @@ document.getElementById('selectedDate').textContent = 'Date: ' + selectedDate;
 const studentsDiv = document.getElementById('studentsList');
 const submitContainer = document.querySelector('.submit-container');
 
-// Message container for showing status + edit button
+
 const messageContainer = document.createElement('div');
 messageContainer.style.margin = '20px auto';
 messageContainer.style.textAlign = 'center';
@@ -35,7 +35,8 @@ messageContainer.style.fontSize = '1.2rem';
 messageContainer.style.color = '#333';
 submitContainer.parentNode.insertBefore(messageContainer, submitContainer.nextSibling);
 
-// Helper: get API endpoints based on class
+
+
 function getApiEndpoints(classNumber) {
   if (classNumber === '9') {
     return {
@@ -56,9 +57,8 @@ function getApiEndpoints(classNumber) {
   }
 }
 
-// Render student list with optional attendance data (for edit mode)
 function renderStudents(students, existingAttendance = []) {
-  studentsDiv.innerHTML = ''; // clear existing
+  studentsDiv.innerHTML = ''; 
   students.forEach((student, index) => {
     const studentDiv = document.createElement('div');
     studentDiv.classList.add('child');
@@ -141,7 +141,7 @@ function renderStudents(students, existingAttendance = []) {
   });
 }
 
-// Fetch students and subjects
+
 function fetchStudentsAndSubjects() {
   return fetch('http://localhost:5000/studentsList', {
     method: 'POST',
@@ -151,7 +151,7 @@ function fetchStudentsAndSubjects() {
     .then(res => res.json());
 }
 
-// Fetch existing attendance for editing
+
 function fetchExistingAttendance() {
   const endpoints = getApiEndpoints(callClass);
   return fetch(endpoints.fetch, {
@@ -163,7 +163,7 @@ function fetchExistingAttendance() {
     .then(data => data.attendance || []);
 }
 
-// Check if attendance exists
+
 function checkAttendanceExists() {
   const endpoints = getApiEndpoints(callClass);
   return fetch(`${endpoints.check}?date=${selectedDate}`)
@@ -172,7 +172,7 @@ function checkAttendanceExists() {
     .catch(() => false);
 }
 
-// Initialize page logic
+
 async function init() {
   document.getElementById('subjectName').textContent = 'Loading...';
   document.getElementById('totalStudents').textContent = 'Loading...';
@@ -212,7 +212,7 @@ async function init() {
   }
 }
 
-// Submit attendance handler for insert or update
+
 document.getElementById('submit-btn').addEventListener('click', async () => {
   const studentDivs = Array.from(document.querySelectorAll('.child'));
   const unmarked = studentDivs.filter(div => div.dataset.status === '');

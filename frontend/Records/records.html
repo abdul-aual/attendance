@@ -53,8 +53,8 @@
   </div>
 
   <script>
-    const selectedClass = localStorage.getItem('selectedSrchClass');  // '9' or '10'
-    const selectedMonth = localStorage.getItem('selectedSrchMonth'); // '1' to '12'
+    const selectedClass = localStorage.getItem('selectedSrchClass');  
+    const selectedMonth = localStorage.getItem('selectedSrchMonth'); 
 
     const classConvert = { '9': 'Nine', '10': 'Ten' };
     document.getElementById('className').textContent = classConvert[selectedClass] || selectedClass;
